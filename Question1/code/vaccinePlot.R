@@ -22,6 +22,9 @@ vaccinePlot <- function(df){
         mutate(Date = as.Date(date, format = '%Y-%m-%d')) |>
         arrange(date)
 
+    rm(africaDf)
+    rm(worldDf)
+
 
     g <- plotDf |>
         ggplot() +

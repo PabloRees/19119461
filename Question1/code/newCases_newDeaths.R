@@ -1,9 +1,7 @@
-deathVsCasesPlot <- function(df){
+deathVsCasesPlot <- function(CovidDf){
 
     library(ggplot2)
 
-    rm(africaDf)
-    rm(worldDf)
 
     nonAfrica = c("Asia","Europe","North America" ,"South America" ,"Oceania")
 
@@ -32,6 +30,9 @@ deathVsCasesPlot <- function(df){
         mutate(date = as.Date(date, format = '%Y-%m-%d')) |>
         gather(Label,Value, -date, -continent) |>
         arrange(date)
+
+    rm(africaDf)
+    rm(worldDf)
 
 
     g <- plotDf |>

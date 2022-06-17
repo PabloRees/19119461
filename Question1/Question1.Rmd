@@ -1,89 +1,39 @@
 ---
-# IMPORTANT: Change settings here, but DO NOT change the spacing.
-# Remove comments and add values where applicable.
-# The descriptions below should be self-explanatory
-
-title: "Question 1: Insights into the Covid 19 pandemic"
-#subtitle: "This will appear as Right Header"
-
-documentclass: "elsarticle"
-
-# --------- Thesis title (Optional - set to FALSE by default).
-# You can move the details below around as you please.
-Thesis_FP: FALSE
-# Entry1: "An unbelievable study with a title spanning multiple lines."
-# Entry2: "\\textbf{Nico Katzke}" # textbf for bold
-# Entry3: "A thesis submitted toward the degree of Doctor of Philosophy"
-# Uni_Logo: Tex/Logo.png # Place a logo in the indicated location (from your root, e.g. defaults to ~/Tex/Logo.png) and uncomment this line. Leave uncommented for no image
-# Logo_width: 0.3 # If using a logo - use this to set width (size) of image
-# Entry4: "Under the supervision of: \\vfill Prof. Joe Smith and Dr. Frank Smith"
-# Entry5: "Stellenbosch University"
-# Entry6: April 2020
-# Entry7:
-# Entry8:
-
-# --------- Front Page
-# Comment: ----- Follow this pattern for up to 5 authors
-AddTitle: TRUE # Use FALSE when submitting to peer reviewed platform. This will remove author names.
-Author1: "Pablo Rees^[__Contributions:__  \\newline _The authors would like to thank the Kommetjie municipality for today's water outage. Thank you sincerely._]"  # First Author - note the thanks message displayed as an italic footnote of first page.
-Ref1: "Stellenbosch Economics Department" # First Author's Affiliation
-Email1: "19119461\\@sun.ac.za" # First Author's Email address
-
-
-# Comment out below to remove both. JEL Codes only given if keywords also given.
-#keywords: "Covid 19 \\Africa " # Use \\sep to separate
-#JELCodes: "L250 \\sep L100"
-
-# ----- Manage headers and footers:
-#BottomLFooter: $Title$
-#BottomCFooter:
-#TopLHeader: \leftmark # Adds section name at topleft. Remove comment to add it.
-BottomRFooter: "\\footnotesize Page \\thepage" # Add a '#' before this line to remove footer.
-addtoprule: TRUE
-addfootrule: TRUE               # Use if footers added. Add '#' to remove line.
-
-# --------- page margins:
-margin: 2.3 # Sides
-bottom: 2 # bottom
-top: 2.5 # Top
-HardSet_layout: TRUE # Hard-set the spacing of words in your document. This will stop LaTeX squashing text to fit on pages, e.g.
-# This is done by hard-setting the spacing dimensions. Set to FALSE if you want LaTeX to optimize this for your paper.
-
-# --------- Line numbers
-linenumbers: FALSE # Used when submitting to journal
-
-# ---------- References settings:
-# You can download cls format here: https://www.zotero.org/ - simply search for your institution. You can also edit and save cls formats here: https://editor.citationstyles.org/about/
-# Hit download, store it in Tex/ folder, and change reference below - easy.
-bibliography: Tex/ref.bib       # Do not edit: Keep this naming convention and location.
-csl: Tex/harvard-stellenbosch-university.csl # referencing format used.
-# By default, the bibliography only displays the cited references. If you want to change this, you can comment out one of the following:
-#nocite: '@*' # Add all items in bibliography, whether cited or not
-# nocite: |  # add specific references that aren't cited
-#  @grinold2000
-#  @Someoneelse2010
-
-# ---------- General:
-RemovePreprintSubmittedTo: TRUE  # Removes the 'preprint submitted to...' at bottom of titlepage
-Journal: "Journal of Finance"   # Journal that the paper will be submitting to, if RemovePreprintSubmittedTo is set to TRUE.
-toc: FALSE                       # Add a table of contents
-numbersections: TRUE             # Should sections (and thus figures and tables) be numbered?
-fontsize: 11pt                  # Set fontsize
-linestretch: 1.2                # Set distance between lines.
-link-citations: TRUE            # This creates dynamic links to the papers in reference list.
-
-### Adding additional latex packages:
-# header-includes:
-#    - \usepackage{colortbl} # Add additional packages here.
-
+title: 'Question 1: Insights into the Covid 19 pandemic'
+documentclass: elsarticle
+Thesis_FP: no
 output:
   pdf_document:
-    keep_tex: TRUE
+    keep_tex: yes
     template: Tex/TexDefault.txt
-    fig_width: 3.5 # Adjust default figure sizes. This can also be done in the chunks of the text.
+    fig_width: 3.5
     fig_height: 3.5
+  html_document:
+    df_print: paged
+Author1: Pablo Rees^[__Contributions:__  \newline _The authors would like to thank
+  the Kommetjie municipality for today's water outage. Thank you sincerely._]
+Ref1: Stellenbosch Economics Department
+Email1: 19119461\@sun.ac.za
+BottomRFooter: \footnotesize Page \thepage
+addtoprule: yes
+addfootrule: yes
+margin: 2.3
+bottom: 2
+top: 2.5
+HardSet_layout: yes
+linenumbers: no
+bibliography: Tex/ref.bib
+csl: Tex/harvard-stellenbosch-university.csl
+RemovePreprintSubmittedTo: yes
+Journal: Journal of Finance
+toc: no
+numbersections: yes
+fontsize: 11pt
+linestretch: 1.2
+link-citations: yes
+AddTitle: yes
 abstract: |
-  Abstract to be written here. The abstract should not be too long and should provide the reader with a good understanding what you are writing about. Academic papers are not like novels where you keep the reader in suspense. To be effective in getting others to read your paper, be as open and concise about your findings here as possible. Ideally, upon reading your abstract, the reader should feel he / she must read your paper in entirety.
+  An analysis of the effects of Covid 19 follows. It was found that Africa had lower vaccination rates and an accompanying higher death rate relative to infection rates than the rest of the world. Further it was found that higher rates of smoking had a high correlation (~30%) with ICU admission rates and by extension, death rates. Finally, it was found that no single country managed to increase the number of hospital beds during the pandemic - or rather, it was found that the data may have some mistakes in it. 
 ---
 
 <!-- First: Set your default preferences for chunk options: -->
@@ -130,13 +80,8 @@ totalDf <- CovidDf |> left_join(DeathsDf,by=c('iso_code'='Code'))
 <!-- # Start Writing here: -->
 <!-- ############################## -->
 
-# Introduction \label{Introduction}
+The number of vaccines administered to Africa has been significantly lower than what the rest of the world receievd. This has been widely attributed to vaccine hoarding by richer countries as well as vaccine hesitancy prevelant amongst African communities.\n
 
-The African experience of Covid 19 has been significantly different from that of the rest of the world.
-
-
-\newpage
-The number of vaccines administered to Africa has been significantly lower than what the rest of the world receievd. This has been widely attributed to vaccine hoarding by richer countries as well as vaccine hesitancy prevelant amongst African communities.
 ```{r,  warning =  FALSE, fig.align = 'center', fig.cap = "Covid Vaccines.\\label{Figure1}", fig.ext = 'png', fig.height = 5, fig.width = 7}
 
 g <- vaccinePlot(CovidDf)
@@ -146,7 +91,8 @@ g
 
 ```
 \newpage
-The number of deaths relative to the number of cases is higher in Africa than it is in non-Africa, this is demonstrated in the graphs below.
+\n\n
+The number of deaths relative to the number of cases is higher in Africa than it is in non-Africa, this is demonstrated in the graphs below.\n
 ```{r,  warning =  FALSE, fig.align = 'center', fig.cap = "Covid Deaths and Cases.\\label{Figure1}", fig.ext = 'png', fig.height = 5, fig.width = 7}
 
 g <- deathVsCasesPlot(CovidDf)
@@ -155,3 +101,64 @@ g
 
 
 ```
+
+\newpage
+Regressing the number of deaths per million on the number of icu admissions per million reveals, as expected, that there is a high correlation between ICU admissions and deaths. This was done for countries with smoking data available.\n
+
+```{r,  warning =  FALSE, fig.align = 'center', fig.cap = "Smoking regressions.\\label{Figure1}", fig.ext = 'png', fig.height = 5, fig.width = 7}
+
+smokersDf <- smoking(CovidDf)
+
+Death_on_ICU <- feols(totalDeathsPerMil ~ icuPerMil, data = smokersDf)
+kable(etable(Death_on_ICU))
+
+```
+
+\n
+Regressing the rate of ICU admissions on the number of female and male smokers, seperately, reveals that the rate of female smokers is a better and stronger predictor for the rate of ICU admissions. \n
+
+```{r,  warning =  FALSE, fig.align = 'center', fig.cap = "Smoking regressions.\\label{Figure2}", fig.ext = 'png', fig.height = 5, fig.width = 7}
+
+    ICU_on_female <- feols(icuPerMil ~  female_smokers, data = smokersDf)
+    kable(etable(ICU_on_female))
+
+    ICU_on_male <- feols(icuPerMil ~  male_smokers, data = smokersDf)
+    kable(etable(ICU_on_male))
+    
+
+```
+\n
+Finally, regressing the rate of ICU admissions on the (evenly weighted) average rate of smokers reveals the highest correlation and the highest adjusted r-squared at a 99,9% significance level. Thus it can be said that countries with higher rates of smokers experienced increased rates of admission to ICU wards and by extension rates of death. \n
+```{r,  warning =  FALSE, fig.align = 'center', fig.cap = "Smoking regressions.\\label{Figure3}", fig.ext = 'png', fig.height = 5, fig.width = 7}
+
+    ICU_on_mean <- feols(icuPerMil ~ meanSmokers , data = smokersDf)
+    kable(etable(ICU_on_mean))
+
+```
+\n\n
+
+The following graphs compare the rate of increase in hospital facilities with the number of icu patients per million.  The global quartiles for the mean rate of hospital beds per million over time were taken and countries were divided into the four quartiles. The highest, middle and lowest 2 countries in terms quartile placement were examined for even distribution. However, this was only done for countries with data recorded in the icu admissions rate variable. According to the data the change in the number of hospital beds per thousand people is exactly zero or Na for every country indicating that no new beds were added. As such the analysis was uninteresting. However, the graphs are presented below.
+
+\n\n
+```{r,  warning =  FALSE, fig.align = 'center', fig.cap = "Hospital capacity.\\label{Figure4}", fig.ext = 'png', fig.height = 5, fig.width = 7}
+
+g <- hospBedsPlot(CovidDf)
+g
+
+```
+\n\n
+
+Here is table depicting the change in hospital beds:
+This is also the end of the document so there isn't much need to scroll to the bottom of this empty table.
+\n\n
+```{r,  warning =  FALSE, fig.align = 'center', fig.cap = "Hospital capacity.\\label{Figure4}", fig.ext = 'png', fig.height = 5, fig.width = 7}
+
+change_in_beds <- CovidDf |> group_by(location) |> 
+    summarize(change = (max(hospital_beds_per_thousand)-min(hospital_beds_per_thousand)))
+
+kable(change_in_beds)
+
+```
+
+
+
