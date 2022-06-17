@@ -3,13 +3,13 @@ title: 'Question 1: Insights into the Covid 19 pandemic'
 documentclass: elsarticle
 Thesis_FP: no
 output:
+  html_document:
+    df_print: paged
   pdf_document:
     keep_tex: yes
     template: Tex/TexDefault.txt
     fig_width: 3.5
     fig_height: 3.5
-  html_document:
-    df_print: paged
 Author1: Pablo Rees^[__Contributions:__  \newline _The authors would like to thank
   the Kommetjie municipality for today's water outage. Thank you sincerely._]
 Ref1: Stellenbosch Economics Department

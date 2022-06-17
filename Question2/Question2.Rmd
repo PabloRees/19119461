@@ -33,7 +33,7 @@ linestretch: 1.2
 link-citations: yes
 AddTitle: yes
 abstract: |
-  An analysis of the effects of Covid 19 follows. It was found that Africa had lower vaccination rates and an accompanying higher death rate relative to infection rates than the rest of the world. Further it was found that higher rates of smoking had a high correlation (~30%) with ICU admission rates and by extension, death rates. Finally, 
+  London has bad weather on the condition that you find cold and wet weather to be bad. 
 ---
 
 <!-- First: Set your default preferences for chunk options: -->
@@ -54,17 +54,20 @@ library(tidyverse)
 library(readr)
 library(dplyr)
 library(knitr)
+library(lubridate)
+library(plotly)
 
 rm(list = ls())
 
 
-list.files('/Users/pablo/Desktop/DS_Test/Solution/19119461/Question1/code/', full.names = T, recursive = T) |>  as.list() |>  walk(~source(.))
+list.files('/Users/pablo/Desktop/DS_Test/Solution/19119461/Question2/code/', full.names = T, recursive = T) |>  as.list() |>  walk(~source(.))
 
-weatherDf = read.csv(glue::glue(getwd(),'/data/london_weather.csv'))
+weatherDf <-  read.csv(glue::glue(getwd(),'/data/london_weather.csv')) |> 
+    mutate(date = lubridate::ymd(date)) |> mutate(month = lubridate::month(date,label = T),
+                                          year = lubridate::year(date))
 
 
 
-getwd()
 
 
 # Notice that as you are working in a .Rproj file (I am assuming you are) - the relative paths of your directories start at your specified root.
@@ -79,21 +82,33 @@ getwd()
 
 # Introduction \label{Introduction}
 London rains a lot. If you would like to get a visceral sense of this experience please listen to this 8 hour recording of the rain in london:\n
-https://www.youtube.com/watch?v=1HcEkN_290Q&ab_channel=AmbientRenders.
+https://www.youtube.com/watch?v=1HcEkN_290Q&ab_channel=AmbientRenders. \n
+If 8 hours of rain sounds like it might not be enjoyable, I suggest you move almost anywhere else.
 
 \n\n
-
 \newpage
-The number of vaccines administered to Africa has been significantly lower than what the rest of the world receievd. This has been widely attributed to vaccine hoarding by richer countries as well as vaccine hesitancy prevelant amongst African communities.\n
+The mean monthly max, min and mean temp since 1979 is plotted below. Please use the slider to ajust the year of analysis. If this looks warm to you, then London is not cold. \n\n
 ```{r,  warning =  FALSE, fig.align = 'center', fig.cap = "Covid Vaccines.\\label{Figure1}", fig.ext = 'png', fig.height = 5, fig.width = 7}
 
-
-
+g <- monthlyAvTemp(weatherDf)
+g
 
 
 ```
 \newpage
 \n\n
+This is an animation of the levels of cloud and rain that have occured in London since 2010. Please notice that the cloud scale starts at 10. This means that the least number of cloudy days (cloud cover > 2) since 2010 has been 10. You'll notice also the high clustering to the top right. This means the weather is kak. 
+```{r,  warning =  FALSE, fig.align = 'center', fig.cap = "Covid Vaccines.\\label{Figure1}", fig.ext = 'png', fig.height = 5, fig.width = 7}
+
+g <- precip_cloud_plot(weatherDf)
+g
+
+
+```
+\newpage
+\n\n
+
+
 
 
 

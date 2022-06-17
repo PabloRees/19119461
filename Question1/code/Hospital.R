@@ -61,10 +61,10 @@ hospBedsPlot <- function(CovidDf){
     geom_line(aes(x=date, y = Value, color = Label),
         alpha = 0.8, size = 1) +
     theme_bw() + theme(legend.position = "bottom") + labs(x = "",
-        y = "New deaths per 10 000/ new cases per million ", title = "New deaths and cases in and out of Africa",
-        subtitle = "Notice Africa''s deaths stray further above the cases line than in non-Africa",
-        caption = "Source: National government reports") +
-    facet_wrap(~location, scales = 'free_y')
+     y = "Hospital beds and ICU patients  ", title = "New hospital beds and ICU admissions",
+     subtitle = "Top 2=Aus & Bulg, mid 2=Cyp & Swed, low 2 = Swi & UK",
+     caption = "Only 36 countries had data") +
+        facet_wrap(~location, scales = 'free_y')
 
     g
 
