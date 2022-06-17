@@ -1,0 +1,110 @@
+---
+title: 'Question 4: What is good about Netflix (for the shareholders I mean)'
+documentclass: elsarticle
+Thesis_FP: no
+output:
+  html_document:
+    df_print: paged
+  pdf_document:
+    keep_tex: yes
+    template: Tex/TexDefault.txt
+    fig_width: 3.5
+    fig_height: 3.5
+Author1: Pablo Rees^[__Contributions:__  \newline _The authors would like to thank
+  the Kommetjie municipality for today's water outage. Thank you sincerely._]
+Ref1: Stellenbosch Economics Department
+Email1: 19119461\@sun.ac.za
+BottomRFooter: \footnotesize Page \thepage
+addtoprule: yes
+addfootrule: yes
+margin: 2.3
+bottom: 2
+top: 2.5
+HardSet_layout: yes
+linenumbers: no
+bibliography: Tex/ref.bib
+csl: Tex/harvard-stellenbosch-university.csl
+RemovePreprintSubmittedTo: yes
+Journal: Journal of Finance
+toc: no
+numbersections: yes
+fontsize: 11pt
+linestretch: 1.2
+link-citations: yes
+AddTitle: yes
+abstract: |
+            No Abstract
+
+   
+---
+
+<!-- First: Set your default preferences for chunk options: -->
+
+<!-- If you want a chunk's code to be printed, set echo = TRUE. message = FALSE stops R printing ugly package loading details in your final paper too. I also suggest setting warning = FALSE and checking for warnings in R, else you might find ugly warnings in your paper. -->
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE, message = FALSE, warning = FALSE, fig.width = 6, fig.height = 5, fig.pos="H", fig.pos = 'H')
+# Note: Include = FALSE implies the code is executed, but not printed in your pdf.
+# warning and message = FALSE implies ugly messages and warnings are removed from your pdf.
+# These should be picked up when you execute the command chunks (code sections below) in your rmd, not printed in your paper!
+
+# Lets load in example data, and see how this can be stored and later called from your 'data' folder.
+if(!require("tidyverse")) install.packages("tidyverse")
+library(tidyverse)
+library(readr)
+library(dplyr)
+library(knitr)
+library(lubridate)
+library(plotly)
+
+rm(list = ls())
+
+
+list.files('/Users/pablo/Desktop/DS_Test/Solution/19119461/Question4/code/', full.names = T, recursive = T) |>  as.list() |>  walk(~source(.))
+
+creditsDf <- read.csv(glue::glue(getwd(),'/data/credits.csv'))
+titlesDf <- read.csv(glue::glue(getwd(),'/data/titles.csv'))
+
+fullDf <- titlesDf |> left_join(creditsDf, by = 'id')
+
+rm(creditsDf,titlesDf)
+
+
+
+# Notice that as you are working in a .Rproj file (I am assuming you are) - the relative paths of your directories start at your specified root.
+# This means that when working in a .Rproj file, you never need to use getwd() - it is assumed as your base root automatically.
+
+```
+
+
+<!-- ############################## -->
+<!-- # Start Writing here: -->
+<!-- ############################## -->
+
+# Introduction \label{Introduction}
+This is a comparison between shows and movies as to which gets better ratings
+\n\n
+\newpage
+
+These graphs only really show that more movies are reviewed than shows
+ \n\n
+```{r,  warning =  FALSE, fig.align = 'center', fig.cap = "Covid Vaccines.\\label{Figure1}", fig.ext = 'png', fig.height = 5, fig.width = 7}
+g <- ratings1(fullDf)
+g
+
+
+```
+Movies and series tend to rank similarly across different categories with movies performing slightly better than series
+ \n\n
+```{r,  warning =  FALSE, fig.align = 'center', fig.cap = "Covid Vaccines.\\label{Figure1}", fig.ext = 'png', fig.height = 5, fig.width = 7}
+g <- ratings2(fullDf)
+g
+
+
+```
+
+
+
+
+
+
